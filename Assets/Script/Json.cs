@@ -23,12 +23,22 @@ public class Json : MonoBehaviour
 {
     Dictionary<int, saveData> data = new Dictionary<int, saveData>();
 
-    [SerializeField]
-    private Image image;
+    [SerializeField] private GameObject savemenuPanel;
+    [SerializeField] List<GameObject> menu = new List<GameObject>();
 
     private void Start()
     {
         LoadFromJson();
+        for(int i = 0; i < 8; i++)
+        {
+            for(int j = 1; j < 3; j++)
+            {
+                GameObject obj = menu[i].transform.GetChild(j).gameObject;
+                Text text = obj.GetComponent<Text>();
+                if (j == 0) text.text = data[i].playerName;
+                else text.text = data[i].date;
+            }
+        }
     }
 
     public void SaveToJson()
@@ -39,15 +49,16 @@ public class Json : MonoBehaviour
 
     public void LoadFromJson()
     {
-        if (File.Exists(string.Concat(Application.dataPath, "saveData.json"){
+        if (File.Exists(string.Concat(Application.dataPath, "saveData.json"))){
             string saveData = File.ReadAllText(Path.Combine(Application.dataPath, "saveData.json"));
             data = JsonConvert.DeserializeObject<Dictionary<int, saveData>>(saveData);
         }
         else
         {
-            data[1] = new saveData("Save Slot 1", 0, " ");
-            data[2] = new saveData("Save Slot 2", 0, " ");
-            data[3] = new saveData("Save Slot 3", 0, " ");
+            for(int i = 0; i < 8; i++)
+            {
+                data[i] = new saveData("???", 0, " ");
+            }
             SaveToJson();
         }
         
