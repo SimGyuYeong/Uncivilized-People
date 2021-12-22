@@ -92,7 +92,7 @@ public class DataManager : MonoBehaviour
                 data[i] = new saveData("???", 0, " ");
             }
             SaveToJson();
-        }
+        }   
         
     }
 }
