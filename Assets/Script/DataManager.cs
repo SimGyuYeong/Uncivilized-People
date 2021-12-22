@@ -43,7 +43,7 @@ public class DataManager : MonoBehaviour
             {
                 GameObject obj = menu[i].transform.GetChild(j).gameObject;
                 Text text = obj.GetComponent<Text>();
-                if (j == 0) text.text = data[i].playerName;
+                if (j == 1) text.text = data[i].playerName;
                 else text.text = data[i].date;
             }
         }
@@ -81,7 +81,7 @@ public class DataManager : MonoBehaviour
 
     public void LoadFromJson()
     {
-        if (File.Exists(string.Concat(Application.dataPath, "saveData.json"))){
+        if (File.Exists(Path.Combine(Application.dataPath, "saveData.json"))){
             string saveData = File.ReadAllText(Path.Combine(Application.dataPath, "saveData.json"));
             data = JsonConvert.DeserializeObject<Dictionary<int, saveData>>(saveData);
         }
