@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class TextManager : MonoBehaviour
 {
@@ -84,14 +85,14 @@ public class TextManager : MonoBehaviour
     {
         if (!isTyping)
         {
-            if (Sentence[chatID][typingID, 5] == "이동")
-            {
-                chatID = System.Convert.ToInt32(Sentence[chatID][typingID, 6]);
-                typingID = 0;
-            }
+            string eventName = Sentence[chatID][typingID, 5];
+
+            if (eventName == "함수") Invoke(Sentence[chatID][typingID, 6], 0);
+
+            else if (eventName == "이동") TextRandom();
 
             image[imageID].SetActive(false);
-            if (Sentence[chatID][typingID, 5] == "선택")
+            if (eventName == "선택")
             {
                 textPanel.gameObject.SetActive(false);
                 SelectOpen();
@@ -103,8 +104,17 @@ public class TextManager : MonoBehaviour
                 if (typingID != max[chatID]) StartCoroutine(Typing());
                 else textPanel.gameObject.SetActive(false);
             }
+
         }
         else skip = true;
+    }
+
+    private void TextRandom()
+    {
+        int number = System.Convert.ToInt32(Sentence[chatID][typingID, 19]);
+        number = Random.RandomRange(6, number);
+        chatID = System.Convert.ToInt32(Sentence[chatID][typingID, number]);
+        typingID = 0;
     }
 
     public void SelectOpen()
