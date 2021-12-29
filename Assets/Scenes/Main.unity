@@ -4125,11 +4125,21 @@ MonoBehaviour:
   textPanel: {fileID: 293212364}
   image:
   - {fileID: 1534025464}
+<<<<<<< HEAD
   - {fileID: 188348599}
   - {fileID: 286848730}
   - {fileID: 2110660346}
   - {fileID: 1484106246}
   - {fileID: 1987081622}
+=======
+  - {fileID: 1534025464}
+  - {fileID: 1534025464}
+  - {fileID: 1534025464}
+  - {fileID: 1534025464}
+  - {fileID: 1534025464}
+  - {fileID: 1534025464}
+  - {fileID: 1534025464}
+>>>>>>> a996b306ead7f8c603f0643972e61e0139f3179e
   selectPanel: {fileID: 591857319}
   selectButton: {fileID: 433923238}
 --- !u!1 &1780953136
