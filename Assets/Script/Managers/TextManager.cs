@@ -84,11 +84,7 @@ public class TextManager : MonoBehaviour
     {
         if (!isTyping)
         {
-            if (Sentence[chatID][typingID, 5] == "이동")
-            {
-                chatID = System.Convert.ToInt32(Sentence[chatID][typingID, 6]);
-                typingID = 0;
-            }
+            if (Sentence[chatID][typingID, 5] == "이동") TextRandom();
 
             image[imageID].SetActive(false);
             if (Sentence[chatID][typingID, 5] == "선택")
@@ -105,6 +101,14 @@ public class TextManager : MonoBehaviour
             }
         }
         else skip = true;
+    }
+
+    private void TextRandom()
+    {
+        int number = System.Convert.ToInt32(Sentence[chatID][typingID, 19]);
+        number = Random.RandomRange(6, number);
+        chatID = System.Convert.ToInt32(Sentence[chatID][typingID, number]);
+        typingID = 0;
     }
 
     public void SelectOpen()
